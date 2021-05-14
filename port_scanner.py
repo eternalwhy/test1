@@ -10,12 +10,12 @@ import asyncio
 import json
 from pprint import pprint
 
-ip = '192.168.1.227'
-begin_port = 1
-end_port = 25
+# ip = '192.168.1.1'
+# begin_port = 78
+# end_port = 82
 
 
-async def port_probe(loop, ip, port):
+async def port_probe(ip, port):
     try:
         reader, writer = await asyncio.open_connection(ip, port)
         # status = (True, port, writer.get_extra_info('peername')[0])
@@ -32,9 +32,9 @@ async def port_probe(loop, ip, port):
     return {'port' : port, 'state' : state}
 
 
-async def scan():
+async def scan(ip, begin_port, end_port):
     ports = range(begin_port, end_port + 1)
-    futs = [port_probe(loop, ip, port) for port in ports]
+    futs = [port_probe(ip, port) for port in ports]
     ports_list = list()
 
     for fut in asyncio.as_completed(futs):
@@ -44,8 +44,8 @@ async def scan():
     
     return json_list
 
-loop = asyncio.get_event_loop()
-json_ports_list = loop.run_until_complete(scan())
-loop.close()
+# loop = asyncio.get_event_loop()
+# json_ports_list = loop.run_until_complete(scan())
+# loop.close()
 
-pprint (json_ports_list)
+# pprint (json_ports_list)
