@@ -7,3 +7,4 @@ from views import port_scan
 
 def setup_routes(app):
     app.router.add_get('/scan/{ip}/{begin_port}/{end_port}', port_scan, name='port_scan')
+    

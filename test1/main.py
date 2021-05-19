@@ -11,6 +11,7 @@ from routes import setup_routes
 from logging.handlers import SysLogHandler
 
 
+
 LOG_PATH = 'main.log' 
 
 logging.basicConfig(
