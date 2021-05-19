@@ -35,5 +35,5 @@ async def scan(ip, begin_port, end_port):
 
     json_list = json.dumps(sorted(ports_list, key=lambda k: k['port']))
     
-    return json_list
+    return json_list, len(ports_list)
 
